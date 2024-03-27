@@ -5,11 +5,15 @@
         <Property name="logfile-name">tutorial.log</Property>
         <Property name="archive">${logpath-location}/archive/tutorial</Property>
         <Property name="interval">10</Property>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5p %C.%M():%L %X - %m%n
+        </Property>
     </Properties>
 
     <Appenders>
         <Console name="Console">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5p %C.%M():%L %X - %m%n"/>
+            <!-- Use the pattern defined as property -->
+            <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
         <RollingFile name="RollingFileAppender" fileName="${logpath-location}/${logfile-name}"
@@ -22,7 +26,7 @@
     </Appenders>
 
     <Loggers>
-        <!-- LOG everything at com.colak package DEBUG level -->
+        <!-- LOG everything at com.colak package at DEBUG level -->
         <Logger name="com.colak" level="DEBUG" additivity="false" includeLocation="true">
             <!-- We don't want to see DEBUG on console -->
             <AppenderRef ref="Console" level="INFO"/>
@@ -30,7 +34,7 @@
             <AppenderRef ref="RollingFileAppender" level="DEBUG"/>
         </Logger>
 
-        <!-- LOG everything at INFO level -->
+        <!-- LOG everything else at INFO level -->
         <Root level="INFO" includeLocation="true">
             <AppenderRef ref="Console" level="INFO"/>
             <AppenderRef ref="RollingFileAppender" level="DEBUG"/>
