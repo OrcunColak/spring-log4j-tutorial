@@ -22,8 +22,11 @@
     </Appenders>
 
     <Loggers>
+        <!-- LOG everything at com.colak package DEBUG level -->
         <Logger name="com.colak" level="DEBUG" additivity="false" includeLocation="true">
+            <!-- We don't want to see DEBUG on console -->
             <AppenderRef ref="Console" level="INFO"/>
+            <!-- We want to see DEBUG in file -->
             <AppenderRef ref="RollingFileAppender" level="DEBUG"/>
         </Logger>
 
