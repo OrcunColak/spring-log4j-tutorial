@@ -27,7 +27,7 @@
             <AppenderRef ref="RollingFileAppender" level="DEBUG"/>
         </Logger>
 
-        !-- LOG everything at INFO level -->
+        <!-- LOG everything at INFO level -->
         <Root level="INFO" includeLocation="true">
             <AppenderRef ref="Console" level="INFO"/>
             <AppenderRef ref="RollingFileAppender" level="DEBUG"/>
